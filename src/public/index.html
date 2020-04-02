@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang='en'>
+ 
+<head>
+    <meta charset='UTF-8'>
+    <title>demo</title>
+    <script src='./js/openseadragon.js'></script>
+    <style>
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #openSeadragon1{
+            border: 1px solid #345;
+        }
+    </style>
+</head>
+ 
+<body>
+    <div id='openSeadragon1' style='width:80%; height:60%;'></div>
+</body>
+ 
+ 
+<script type='text/javascript'>
+    var queryString = window.location.search.slice(1);
+    var objArr = queryString.split('&');
+    var obj = {}
+    objArr.forEach(function(item){
+        var arr = item.split('=');
+        obj[arr[0]] = arr[1];
+    })
+    var viewer = OpenSeadragon({
+        id: 'openSeadragon1',
+        prefixUrl: './images/',
+        showNavigator: true,
+        tileSources: obj.dzi
+    });
+    //开启全屏
+    //fullScreen();
+    function fullScreen() {
+        var element = document.documentElement;
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+        } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen();
+        }
+    }
+
+</script>
+ 
+</html>

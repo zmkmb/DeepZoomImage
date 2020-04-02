@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo</title>
+    <style>
+        *{padding:0;margin:0}
+        .main{
+            max-width: 960px;
+            display: flex;
+            margin: 0 auto;
+            background-color: #3388ff;
+            border: 1px solid #3388ff;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .main .list {
+            width: 180px;
+            height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main .list img {
+            width: 180px;
+            height: 180px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        
+    </div>
+    <script src="./js/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            var $main = $('<div class="content"></div>');
+            
+            $.get('/getList',function(res){
+                var lists = [];
+                if(res){
+                    res = JSON.parse(res);
+                    console.log(res)
+                    res.forEach(function(item) {
+                        let $list = $('<div class="list">\
+                        <img src=""/>\
+                        <span></span>\
+                        </div>');
+                        $list.find('img').attr('src',item.imgSrc);
+                        $list.click(function(){
+                            window.location.href = './index.html?dzi=' + item.dziPath
+                        })
+                        lists.push($list)
+                    });
+                    $('.main').append(lists);
+                }
+            })
+        })
+    </script>
+</body>
+</html>
