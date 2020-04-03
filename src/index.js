@@ -3,7 +3,7 @@ const app = express()
 const fs = require('fs')
 const {exec} = require("child_process");
 const OUTPUT_DIR = "output/dzi/";
-//let port = 3000;
+let port = 3000;
 console.log(__dirname)
 app.use(express.static(__dirname));
 app.get('/getList',function(req,res){
